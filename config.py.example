@@ -1,0 +1,11 @@
+TOKEN = "YOUR_BOT_TOKEN"
+OPENAPI_TOKEN = "YOU_OPENAI_TOKEN"
+
+channel_id = -1000000
+channel_url = "https://t.me"
+
+pdf_id = "file_id"
+
+admin_id = [796644977, 435261752]
+
+log_on = False
