@@ -1,7 +1,4 @@
-from aiogram.types import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton, \
-    ReplyKeyboardRemove
-from aiogram.utils.callback_data import CallbackData
-from utils import db
+from aiogram.types import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
 from config import channel_url
 
 market = ReplyKeyboardMarkup(row_width=2, resize_keyboard=True).add(KeyboardButton("Озон"),

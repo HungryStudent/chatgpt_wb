@@ -1,13 +1,6 @@
-import random
-
-import aiohttp
-
 from config import OPENAPI_TOKEN
-import openai
-
-openai.api_key = OPENAPI_TOKEN
-
-n = 1
+import random
+import aiohttp
 
 prompt_templates = [
     'Сгенерируй не банальное текстовое описание {symbols_count} символов для товара на маркетплейсе {name}, обязательно используй в тексте слова: "{keys}" не меняя порядок слов',

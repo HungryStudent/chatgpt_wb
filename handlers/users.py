@@ -1,19 +1,12 @@
-from enum import Enum
-
-from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters import Text
-
 from aiogram.types import Message, CallbackQuery, ChatMember
-from aiogram import Dispatcher
-from aiogram.utils.exceptions import BotKicked
+from aiogram.dispatcher import FSMContext
 
-from create_bot import dp
-from datetime import date, timedelta
-import keyboards as kb
-from handlers import texts
-from utils import db, chatgpt
-from states import user as states
 from config import channel_id, pdf_id
+from states import user as states
+from utils import db, chatgpt
+from handlers import texts
+from create_bot import dp
+import keyboards as kb
 
 
 @dp.message_handler(commands='start', state="*")

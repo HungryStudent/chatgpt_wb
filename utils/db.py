@@ -1,8 +1,6 @@
+from contextlib import closing
 import sqlite3
 import time
-
-from create_bot import log
-from contextlib import closing
 
 database = "utils/database.db"
 
@@ -20,11 +18,13 @@ def get_user(user_id):
         cursor.execute("SELECT user_id FROM users WHERE user_id = ?", (user_id,))
         return cursor.fetchone()
 
+
 def get_users():
     with closing(sqlite3.connect(database)) as connection:
         cursor = connection.cursor()
         cursor.execute("SELECT user_id FROM users")
         return cursor.fetchall()
+
 
 def add_user(user_id, username, first_name):
     with closing(sqlite3.connect(database)) as connection:
