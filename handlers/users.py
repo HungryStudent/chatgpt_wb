@@ -39,8 +39,9 @@ async def enter_name(message: Message, state: FSMContext):
     except ValueError:
         await message.answer("Введите целое число")
         return
-    if not 500 < symbols_count < 5000:
+    if not 500 <= symbols_count <= 5000:
         await message.answer("Введите целое число в пределах от 500 до 5000")
+        return
     await state.update_data(symbols_count=symbols_count)
     await message.answer(texts.enter_name, reply_markup=kb.again)
     await states.DataStates.next()
