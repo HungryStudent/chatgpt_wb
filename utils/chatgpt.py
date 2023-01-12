@@ -28,10 +28,11 @@ async def gen_text(text_data):
                                       }) as resp:
             response = await resp.json()
             try:
-
                 return response["choices"][0]["text"]
             except KeyError:
                 for admin in admin_id:
                     await bot.send_message(admin, response["error"]["message"])
                 print(f"Ошибка {response}")
+                if "That model is currently overloaded with other requests" in response["error"]["message"]:
+                    return "Модель ChatGPT сейчас перегружена запросами, повторите запрос позже."
                 return "Error"
