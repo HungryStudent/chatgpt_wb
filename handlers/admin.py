@@ -1,7 +1,7 @@
 import asyncio
 
 from aiogram.dispatcher import FSMContext
-from aiogram.types import Message
+from aiogram.types import Message, ReplyKeyboardRemove
 
 from create_bot import dp, log
 from states.admin import *
@@ -33,7 +33,7 @@ async def start_send(message: Message, state: FSMContext):
     users = db.get_users()
     count = 0
     block_count = 0
-    await message.answer("Начал рассылку", reply_markup=kb.ReplyKeyboardRemove())
+    await message.answer("Начал рассылку", reply_markup=ReplyKeyboardRemove())
     for bot_user in users:
         try:
             await message.bot.send_message(bot_user[0], message.text)

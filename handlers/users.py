@@ -1,4 +1,4 @@
-from aiogram.types import Message, CallbackQuery, ChatMember
+from aiogram.types import Message, CallbackQuery, ChatMember, ReplyKeyboardRemove
 from aiogram.dispatcher import FSMContext
 
 from config import channel_id, pdf_id
@@ -48,7 +48,7 @@ async def enter_name(message: Message, state: FSMContext):
     if not 500 < symbols_count < 5000:
         await message.answer("Введите целое число в пределах от 500 до 5000")
     await state.update_data(symbols_count=symbols_count)
-    await message.answer(texts.enter_name, reply_markup=kb.ReplyKeyboardRemove())
+    await message.answer(texts.enter_name, reply_markup=ReplyKeyboardRemove())
     await states.DataStates.next()
 
 
