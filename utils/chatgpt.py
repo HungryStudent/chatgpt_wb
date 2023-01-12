@@ -32,6 +32,6 @@ async def gen_text(text_data):
                 return response["choices"][0]["text"]
             except KeyError:
                 for admin in admin_id:
-                    await bot.send_message(admin, "Нерабочий токен openai")
+                    await bot.send_message(admin, response["error"]["message"])
                 print(f"Ошибка {response}")
                 return "Error"
