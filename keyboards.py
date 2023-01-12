@@ -5,15 +5,20 @@ market = ReplyKeyboardMarkup(row_width=2, resize_keyboard=True).add(KeyboardButt
                                                                     KeyboardButton("Wildberries"))
 
 limit = ReplyKeyboardMarkup(row_width=2, resize_keyboard=True).add(KeyboardButton("Ограничение в 5000 символов"),
-                                                                   KeyboardButton("Ограничение в 1000 символов"))
+                                                                   KeyboardButton("Ограничение в 1000 символов"),
+                                                                   KeyboardButton("Начать заново"))
+
+again = ReplyKeyboardMarkup(row_width=1, resize_keyboard=True).add(KeyboardButton("Начать заново"))
 
 symbols_count = {
-    "Ограничение в 5000 символов": ReplyKeyboardMarkup(row_width=2, resize_keyboard=True).add(KeyboardButton("500"),
-                                                                                              KeyboardButton("1000"),
-                                                                                              KeyboardButton("2500"),
-                                                                                              KeyboardButton("5000")),
-    "Ограничение в 1000 символов": ReplyKeyboardMarkup(row_width=2, resize_keyboard=True).add(KeyboardButton("500"),
-                                                                                              KeyboardButton("1000"))
+    "Озон": ReplyKeyboardMarkup(row_width=2, resize_keyboard=True).add(KeyboardButton("500"),
+                                                                       KeyboardButton("1000"),
+                                                                       KeyboardButton("2500"),
+                                                                       KeyboardButton("5000"),
+                                                                       KeyboardButton("Начать заново")),
+    "Wildberries": ReplyKeyboardMarkup(row_width=2, resize_keyboard=True).add(KeyboardButton("500"),
+                                                                              KeyboardButton("1000"),
+                                                                              KeyboardButton("Начать заново"))
 }
 
 channel = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Канал", url=channel_url),

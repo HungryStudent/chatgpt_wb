@@ -19,7 +19,7 @@ async def start_message(message: Message, state: FSMContext):
     await message.answer(texts.choose_market, reply_markup=kb.market)
 
 
-@dp.message_handler(text="Начать заново")
+@dp.message_handler(text="Начать заново", state="*")
 async def start_again(message: Message, state: FSMContext):
     await state.finish()
     await message.answer(texts.choose_market, reply_markup=kb.market)
@@ -28,12 +28,6 @@ async def start_again(message: Message, state: FSMContext):
 @dp.message_handler(text="Озон")
 @dp.message_handler(text="Wildberries")
 async def limit_page(message: Message):
-    await message.answer(texts.choose_limit, reply_markup=kb.limit)
-
-
-@dp.message_handler(text="Ограничение в 5000 символов")
-@dp.message_handler(text="Ограничение в 1000 символов")
-async def choose_symbols_count(message: Message):
     await message.answer(texts.choose_symbols_count, reply_markup=kb.symbols_count[message.text])
     await states.DataStates.enter_symbols_count.set()
 
@@ -48,14 +42,14 @@ async def enter_name(message: Message, state: FSMContext):
     if not 500 < symbols_count < 5000:
         await message.answer("Введите целое число в пределах от 500 до 5000")
     await state.update_data(symbols_count=symbols_count)
-    await message.answer(texts.enter_name, reply_markup=ReplyKeyboardRemove())
+    await message.answer(texts.enter_name, reply_markup=kb.again)
     await states.DataStates.next()
 
 
 @dp.message_handler(state=states.DataStates.enter_name)
 async def enter_keys(message: Message, state: FSMContext):
     await state.update_data(name=message.text)
-    await message.answer(texts.enter_keys)
+    await message.answer(texts.enter_keys, reply_markup=kb.again)
     await states.DataStates.next()
 
 
