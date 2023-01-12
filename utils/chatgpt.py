@@ -1,7 +1,8 @@
-from config import OPENAPI_TOKEN
+from config import OPENAPI_TOKEN, admin_id
 import aiohttp
 import random
 
+from create_bot import bot
 
 prompt_templates = [
     'Сгенерируй не банальное текстовое описание {symbols_count} символов для товара на маркетплейсе {name}, обязательно используй в тексте слова: "{keys}" не меняя порядок слов',
@@ -27,6 +28,10 @@ async def gen_text(text_data):
                                       }) as resp:
             response = await resp.json()
             try:
+                for admin in admin_id:
+                    await bot.send_message(admin, "Нерабочий токен openai")
                 return response["choices"][0]["text"]
             except KeyError:
+
                 print(f"Ошибка {response}")
+                return "Error"
