@@ -64,6 +64,8 @@ async def repeat_generate_description(message: Message, state: FSMContext):
     text_data = await state.get_data()
     await message.answer(texts.load_api)
     ready_text = await chatgpt.gen_text(text_data)
+    if "Ошибка" in ready_text:
+        await message.answer("Произошла ошибка, попробуйте позже")
     await message.answer(ready_text, reply_markup=kb.ready_text)
 
 
@@ -84,6 +86,8 @@ async def generate_description(message: Message, state: FSMContext):
     text_data = await state.get_data()
     await message.answer(texts.load_api)
     ready_text = await chatgpt.gen_text(text_data)
+    if "Ошибка" in ready_text:
+        await message.answer("Произошла ошибка, попробуйте позже")
     await message.answer(ready_text, reply_markup=kb.ready_text)
 
 
@@ -97,5 +101,7 @@ async def check_sub(call: CallbackQuery, state: FSMContext):
     text_data = await state.get_data()
     await call.message.answer(texts.load_api)
     ready_text = await chatgpt.gen_text(text_data)
+    if "Ошибка" in ready_text:
+        await call.message.answer("Произошла ошибка, попробуйте позже")
     await call.message.answer(ready_text, reply_markup=kb.ready_text)
     await call.answer()

@@ -26,4 +26,7 @@ async def gen_text(text_data):
                                       "presence_penalty": 0
                                       }) as resp:
             response = await resp.json()
-            return response["choices"][0]["text"]
+            try:
+                return response["choices"][0]["text"]
+            except KeyError:
+                print(f"Ошибка {response}")
